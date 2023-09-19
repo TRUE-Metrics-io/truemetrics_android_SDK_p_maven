@@ -1,0 +1,215 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.truemetrics",
+    "module": "truemetricssdk",
+    "version": "1.0.3",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "releaseApiElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "truemetricssdk-1.0.3.aar",
+          "url": "truemetricssdk-1.0.3.aar",
+          "size": 505088,
+          "sha512": "b328f0ed92410c57bdb6c28af8b4f27ac7affbe67b64eccde0b99bd7e769fea1db1b88efb67c6f0066cd909ec17e4a57cba6cc162db9978db513e71bab473730",
+          "sha256": "fb4526470ff85560bb4b66c2a9b147f5b79d05115d018d25e641bff8c9588ee1",
+          "sha1": "f24b8426c5ab82441d170b887f1598d3da2d60b2",
+          "md5": "c392669a0257e02972038b36b0f779f2"
+        }
+      ]
+    },
+    {
+      "name": "releaseRuntimeElements-published",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.test.ext",
+          "module": "junit-ktx",
+          "version": {
+            "requires": "1.1.5"
+          }
+        },
+        {
+          "group": "androidx.core",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.8.0"
+          }
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.6.1"
+          }
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "androidx.test",
+          "module": "core-ktx",
+          "version": {
+            "requires": "1.5.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-core",
+          "version": {
+            "requires": "1.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-test",
+          "version": {
+            "requires": "1.7.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-reflect",
+          "version": {
+            "requires": "1.9.10"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-extensions",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-okhttp",
+          "version": {
+            "requires": "2.3.2"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "2.3.2"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "2.3.2"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging-jvm",
+          "version": {
+            "requires": "2.3.2"
+          }
+        },
+        {
+          "group": "io.insert-koin",
+          "module": "koin-core",
+          "version": {
+            "requires": "3.5.0"
+          }
+        },
+        {
+          "group": "io.arrow-kt",
+          "module": "arrow-core",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-runtime-ktx",
+          "version": {
+            "requires": "2.8.1"
+          }
+        },
+        {
+          "group": "com.google.android.gms",
+          "module": "play-services-location",
+          "version": {
+            "requires": "21.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.9.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "truemetricssdk-1.0.3.aar",
+          "url": "truemetricssdk-1.0.3.aar",
+          "size": 505088,
+          "sha512": "b328f0ed92410c57bdb6c28af8b4f27ac7affbe67b64eccde0b99bd7e769fea1db1b88efb67c6f0066cd909ec17e4a57cba6cc162db9978db513e71bab473730",
+          "sha256": "fb4526470ff85560bb4b66c2a9b147f5b79d05115d018d25e641bff8c9588ee1",
+          "sha1": "f24b8426c5ab82441d170b887f1598d3da2d60b2",
+          "md5": "c392669a0257e02972038b36b0f779f2"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "truemetricssdk-1.0.3-sources.jar",
+          "url": "truemetricssdk-1.0.3-sources.jar",
+          "size": 130223,
+          "sha512": "25b1822cfe62ff6b99de51e3503df555268be2d52ad7448d38897003675d39d3141cac14d77f91e8ef18e655d6d042420a636e7cf15b91edaabbb9b21207a104",
+          "sha256": "7edb87e12525743d3f683ce394a839379d473ed19b1a53d0a5e0e35092708516",
+          "sha1": "20af392e3db6be12826c098a9f600ddcd844dec6",
+          "md5": "4567375db4499a0537ecd5acee408af8"
+        }
+      ]
+    }
+  ]
+}
