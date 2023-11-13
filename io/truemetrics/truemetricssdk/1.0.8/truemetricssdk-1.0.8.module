@@ -34,11 +34,11 @@
         {
           "name": "truemetricssdk-1.0.8.aar",
           "url": "truemetricssdk-1.0.8.aar",
-          "size": 567618,
-          "sha512": "4ebd30dd210f283a6a92a9e443053e914cf93a743754b339b924b5b61b04a5af236e1d5a224cba8066ca64a19fa662a70d6e763e356acedbb1bcc65147620fc5",
-          "sha256": "5d1e7b1337936788fd7c9836a882ae55c35c3a68bc32ae6f89d6f8c2fbf15346",
-          "sha1": "566dc8d9278f8faca5348590198a302570118c9e",
-          "md5": "8250694587d67e72d0528127cb1cdc54"
+          "size": 567671,
+          "sha512": "aa9d105cc616cafaa38f1d25d4891db74fc61a801e4a5e16d0b52c1d9b84ca704fde18020485368615555026d1ba25f946fbdde2be368680fb78302f1cbdcd96",
+          "sha256": "c2f7d38903a17dc07567b7e4c4f03d42822f690073e39cdb5dabe107835191fc",
+          "sha1": "3605c9045731d300fa100b9bcdd1719ebdeceb4a",
+          "md5": "c2f220f88202c5088995b07d48df21a2"
         }
       ]
     },
@@ -188,11 +188,11 @@
         {
           "name": "truemetricssdk-1.0.8.aar",
           "url": "truemetricssdk-1.0.8.aar",
-          "size": 567618,
-          "sha512": "4ebd30dd210f283a6a92a9e443053e914cf93a743754b339b924b5b61b04a5af236e1d5a224cba8066ca64a19fa662a70d6e763e356acedbb1bcc65147620fc5",
-          "sha256": "5d1e7b1337936788fd7c9836a882ae55c35c3a68bc32ae6f89d6f8c2fbf15346",
-          "sha1": "566dc8d9278f8faca5348590198a302570118c9e",
-          "md5": "8250694587d67e72d0528127cb1cdc54"
+          "size": 567671,
+          "sha512": "aa9d105cc616cafaa38f1d25d4891db74fc61a801e4a5e16d0b52c1d9b84ca704fde18020485368615555026d1ba25f946fbdde2be368680fb78302f1cbdcd96",
+          "sha256": "c2f7d38903a17dc07567b7e4c4f03d42822f690073e39cdb5dabe107835191fc",
+          "sha1": "3605c9045731d300fa100b9bcdd1719ebdeceb4a",
+          "md5": "c2f220f88202c5088995b07d48df21a2"
         }
       ]
     },
@@ -210,11 +210,11 @@
         {
           "name": "truemetricssdk-1.0.8-sources.jar",
           "url": "truemetricssdk-1.0.8-sources.jar",
-          "size": 147725,
-          "sha512": "ed69794c64fac9729d3c974feca436e9b7e4b88d9fd970ed481c7af5a3cc40ed0dea9cc841401794974e65d32c205a7f26efe79c749115ccb2bb92600dfb4c0e",
-          "sha256": "a486213a4ce43340cddd92ba4ecf6aa12719b3c2b0cc983fb20a39a0b487a346",
-          "sha1": "39807a507a6e1c882faf3162376579c9b6caa4c0",
-          "md5": "ae840b07720f970c4724801d4c0f0c42"
+          "size": 147771,
+          "sha512": "516e058717c1521f7f303750b860bd3d2787d08006d2252b54a54b51d460801ea3501e68d775085bff5f5e09e10c9b80c6e702d68c8eafef5014b6ff6e4cd9b1",
+          "sha256": "e06a938ed7041447cf2e1af9624fddd0d6b1c46a7647e2d49fcbe99a6754dc01",
+          "sha1": "ded842f9b079a9f5a690bf8ffa0dda25c9a65ca1",
+          "md5": "24133d74aade563d17298ba5045fc7c2"
         }
       ]
     }
