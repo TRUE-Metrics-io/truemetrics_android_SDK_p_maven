@@ -15,12 +15,12 @@
   },
   "variants": [
     {
-      "name": "releaseVariantReleaseApiPublication",
+      "name": "releaseApiElements-published",
       "attributes": {
         "org.gradle.category": "library",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.libraryelements": "aar",
-        "org.gradle.usage": "java-api"
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
       "dependencies": [
         {
@@ -35,21 +35,21 @@
         {
           "name": "truemetricssdk-1.2.2.aar",
           "url": "truemetricssdk-1.2.2.aar",
-          "size": 179836,
-          "sha512": "2470fee1f41796837fd053b26aa33db8821b6349d8769edfb04220cc74cde42280f32bf7b7a8c3a372368f978cc0eb85022f8fb1a95d82f3c8efaa95a4f959e5",
-          "sha256": "58490bc124aded55374774f990761061782a06916c7690a76bbeed0b6d2c2202",
-          "sha1": "bef9e3916d096ceaa1cb76fb4b78dfea1a4ae60d",
-          "md5": "97d83628bf307cc4dc2f2e33b65a2b89"
+          "size": 415795,
+          "sha512": "d625597fe3256fd818f4b515b5b10a95c4fe82a4544852b62b8e2922fb3f0338ffa8c871deeb8dfe3c3d72af72ec28bc395470adb857dc4e31dc3718777a0a19",
+          "sha256": "837dea741a3f977d067c0bfac2924c10f633660332afe0f58b41a2ff2dcb3fef",
+          "sha1": "34b9b67c0045792da82e2072718610f2d9aa7fac",
+          "md5": "82c8a5da070f41a50942d81345e82fbb"
         }
       ]
     },
     {
-      "name": "releaseVariantReleaseRuntimePublication",
+      "name": "releaseRuntimeElements-published",
       "attributes": {
         "org.gradle.category": "library",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.libraryelements": "aar",
-        "org.gradle.usage": "java-runtime"
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
       },
       "dependencies": [
         {
@@ -224,11 +224,34 @@
         {
           "name": "truemetricssdk-1.2.2.aar",
           "url": "truemetricssdk-1.2.2.aar",
-          "size": 179836,
-          "sha512": "2470fee1f41796837fd053b26aa33db8821b6349d8769edfb04220cc74cde42280f32bf7b7a8c3a372368f978cc0eb85022f8fb1a95d82f3c8efaa95a4f959e5",
-          "sha256": "58490bc124aded55374774f990761061782a06916c7690a76bbeed0b6d2c2202",
-          "sha1": "bef9e3916d096ceaa1cb76fb4b78dfea1a4ae60d",
-          "md5": "97d83628bf307cc4dc2f2e33b65a2b89"
+          "size": 415795,
+          "sha512": "d625597fe3256fd818f4b515b5b10a95c4fe82a4544852b62b8e2922fb3f0338ffa8c871deeb8dfe3c3d72af72ec28bc395470adb857dc4e31dc3718777a0a19",
+          "sha256": "837dea741a3f977d067c0bfac2924c10f633660332afe0f58b41a2ff2dcb3fef",
+          "sha1": "34b9b67c0045792da82e2072718610f2d9aa7fac",
+          "md5": "82c8a5da070f41a50942d81345e82fbb"
+        }
+      ]
+    },
+    {
+      "name": "releaseSourcesElements-published",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.jvm.environment": "android",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "androidJvm"
+      },
+      "files": [
+        {
+          "name": "truemetricssdk-1.2.2-sources.jar",
+          "url": "truemetricssdk-1.2.2-sources.jar",
+          "size": 295299,
+          "sha512": "96fbb2fedae979becc3677481259e358f6353c0c4a31213fef0460ce514a15efec5a2f3a542c56028d4f0f6c86b56f2b0d2b5435862cc57ce7347e492507747d",
+          "sha256": "a1b313c0e8f1e522f7594bc7f00577f4f8fef81600a1d6c833daaf3f7accae1d",
+          "sha1": "3eb77fabf19483748c225c42b961286400a01ffb",
+          "md5": "710a8fef8816366ceabe6626100cd4ba"
         }
       ]
     }
