@@ -15,12 +15,12 @@
   },
   "variants": [
     {
-      "name": "releaseApiElements-published",
+      "name": "releaseVariantReleaseApiPublication",
       "attributes": {
         "org.gradle.category": "library",
-        "org.gradle.jvm.environment": "android",
-        "org.gradle.usage": "java-api",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
       },
       "dependencies": [
         {
@@ -35,21 +35,21 @@
         {
           "name": "truemetricssdk-1.2.2.aar",
           "url": "truemetricssdk-1.2.2.aar",
-          "size": 415795,
-          "sha512": "d625597fe3256fd818f4b515b5b10a95c4fe82a4544852b62b8e2922fb3f0338ffa8c871deeb8dfe3c3d72af72ec28bc395470adb857dc4e31dc3718777a0a19",
-          "sha256": "837dea741a3f977d067c0bfac2924c10f633660332afe0f58b41a2ff2dcb3fef",
-          "sha1": "34b9b67c0045792da82e2072718610f2d9aa7fac",
-          "md5": "82c8a5da070f41a50942d81345e82fbb"
+          "size": 182060,
+          "sha512": "88635fd548209fc22e8874cb0b3f77153fda549dacda209b841b5c06390abad90b5069652982859c7be521fb9b6012edb0f2219fdeceae2698402c7da4afb126",
+          "sha256": "5669d5fe61045a95a25c5f5c29356ce1c72c161868b8034c8c9c0d97216db6e3",
+          "sha1": "6cb5785b3da6bbc31aeb1f99c215ac9acf1bad16",
+          "md5": "946a18e171f09e78ef4ee2a21a4b6006"
         }
       ]
     },
     {
-      "name": "releaseRuntimeElements-published",
+      "name": "releaseVariantReleaseRuntimePublication",
       "attributes": {
         "org.gradle.category": "library",
-        "org.gradle.jvm.environment": "android",
-        "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
       },
       "dependencies": [
         {
@@ -200,9 +200,9 @@
         },
         {
           "group": "androidx.sqlite",
-          "module": "sqlite",
+          "module": "sqlite-ktx",
           "version": {
-            "requires": "2.4.0"
+            "requires": "2.5.2"
           }
         },
         {
@@ -224,34 +224,11 @@
         {
           "name": "truemetricssdk-1.2.2.aar",
           "url": "truemetricssdk-1.2.2.aar",
-          "size": 415795,
-          "sha512": "d625597fe3256fd818f4b515b5b10a95c4fe82a4544852b62b8e2922fb3f0338ffa8c871deeb8dfe3c3d72af72ec28bc395470adb857dc4e31dc3718777a0a19",
-          "sha256": "837dea741a3f977d067c0bfac2924c10f633660332afe0f58b41a2ff2dcb3fef",
-          "sha1": "34b9b67c0045792da82e2072718610f2d9aa7fac",
-          "md5": "82c8a5da070f41a50942d81345e82fbb"
-        }
-      ]
-    },
-    {
-      "name": "releaseSourcesElements-published",
-      "attributes": {
-        "org.gradle.category": "documentation",
-        "org.gradle.dependency.bundling": "external",
-        "org.gradle.docstype": "sources",
-        "org.gradle.jvm.environment": "android",
-        "org.gradle.libraryelements": "jar",
-        "org.gradle.usage": "java-runtime",
-        "org.jetbrains.kotlin.platform.type": "androidJvm"
-      },
-      "files": [
-        {
-          "name": "truemetricssdk-1.2.2-sources.jar",
-          "url": "truemetricssdk-1.2.2-sources.jar",
-          "size": 295299,
-          "sha512": "96fbb2fedae979becc3677481259e358f6353c0c4a31213fef0460ce514a15efec5a2f3a542c56028d4f0f6c86b56f2b0d2b5435862cc57ce7347e492507747d",
-          "sha256": "a1b313c0e8f1e522f7594bc7f00577f4f8fef81600a1d6c833daaf3f7accae1d",
-          "sha1": "3eb77fabf19483748c225c42b961286400a01ffb",
-          "md5": "710a8fef8816366ceabe6626100cd4ba"
+          "size": 182060,
+          "sha512": "88635fd548209fc22e8874cb0b3f77153fda549dacda209b841b5c06390abad90b5069652982859c7be521fb9b6012edb0f2219fdeceae2698402c7da4afb126",
+          "sha256": "5669d5fe61045a95a25c5f5c29356ce1c72c161868b8034c8c9c0d97216db6e3",
+          "sha1": "6cb5785b3da6bbc31aeb1f99c215ac9acf1bad16",
+          "md5": "946a18e171f09e78ef4ee2a21a4b6006"
         }
       ]
     }
