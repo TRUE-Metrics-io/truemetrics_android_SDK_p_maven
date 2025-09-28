@@ -1,7 +1,6 @@
 # TrueMetrics Android SDK
 
-[![Build Status](https://github.com/TRUE-Metrics-io/truemetrics_android_SDK_p/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TRUE-Metrics-io/truemetrics_android_SDK_p/actions/workflows/build.yml)
-[![Maven Central](https://img.shields.io/maven-central/v/io.truemetrics/truemetricssdk.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:io.truemetrics%20AND%20a:truemetricssdk)
+[![Build Status](https://github.com/TRUE-Metrics-io/truemetrics_android_SDK_p/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TRUE-Metrics-io/truemetrics_android_SDK_p/actions/workflows/main.yml)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
 [![Kotlin](https://img.shields.io/badge/kotlin-2.2.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
 
