@@ -1,4 +1,4 @@
-# TrueMetrics Android SDK
+# Truemetrics Android SDK
 
 [![Build Status](https://github.com/TRUE-Metrics-io/truemetrics_android_SDK_p/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/TRUE-Metrics-io/truemetrics_android_SDK_p/actions/workflows/main.yml)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=21)
