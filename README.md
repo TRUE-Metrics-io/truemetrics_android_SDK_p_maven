@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.truemetrics:truemetricssdk:1.3.1-SNAPSHOT")
+    implementation("io.truemetrics:truemetricssdk:1.4.0-SNAPSHOT")
 }
 ```
 
