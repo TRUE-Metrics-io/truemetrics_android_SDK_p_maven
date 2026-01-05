@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.8
+
+- Fix dependency conflict crash: removed Ktorfit code generation library to prevent `NoSuchMethodError` when host app uses different Ktorfit version. Replaced with pure Ktor HTTP client calls.
+
 ## 1.3.7
 
 - Fix index out of bounds exception in sensor buffer: improved thread safety with single-thread executor for buffer operations
