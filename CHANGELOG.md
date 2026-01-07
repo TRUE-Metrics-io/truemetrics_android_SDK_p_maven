@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.9
+
+- Improve sensor data buffering stability
+
 ## 1.3.8
 
 - Fix dependency conflict crash: removed Ktorfit code generation library to prevent `NoSuchMethodError` when host app uses different Ktorfit version. Replaced with pure Ktor HTTP client calls.
