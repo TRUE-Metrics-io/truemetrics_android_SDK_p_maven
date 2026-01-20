@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.10
+
+- Fix device ID changing after first app restart
+
 ## 1.3.9
 
 - Improve sensor data buffering stability
