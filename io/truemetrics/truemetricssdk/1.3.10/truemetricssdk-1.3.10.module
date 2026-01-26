@@ -35,11 +35,11 @@
         {
           "name": "truemetricssdk-1.3.10.aar",
           "url": "truemetricssdk-1.3.10.aar",
-          "size": 694162,
-          "sha512": "f0536b42afe82d592e79fae4c60709f337694f6e5608ef4acc9d06569386aa6269a13587786769efea3a470715df908b51ca51fea42a12b3d6fb9e506ab270c8",
-          "sha256": "0f15c76a36b7a57cc082c933af88e74514583263b36155b82936a854cde670c7",
-          "sha1": "c494aee7bc7756b858979fc3f513bcd2d809b09a",
-          "md5": "bc454aae4d2dee42107fbb16c0f68453"
+          "size": 693292,
+          "sha512": "ffd5c5e3b2e85c5b3752545e43af524cf45826c1030ff2aacc9f0b04ac8b097b85889afc0eb44ccc74bdfbce485494b289ca0564f219dab64119b799f6fada1c",
+          "sha256": "e5abc6e33f693d31f282ff0f77ec247011eb8afaac999f5bb607c299d26283b8",
+          "sha1": "c0c4b55670308d680a2df05556a9345d932bc25d",
+          "md5": "02abc004fd1150b53eff8bb8e0d467af"
         }
       ]
     },
@@ -224,11 +224,11 @@
         {
           "name": "truemetricssdk-1.3.10.aar",
           "url": "truemetricssdk-1.3.10.aar",
-          "size": 694162,
-          "sha512": "f0536b42afe82d592e79fae4c60709f337694f6e5608ef4acc9d06569386aa6269a13587786769efea3a470715df908b51ca51fea42a12b3d6fb9e506ab270c8",
-          "sha256": "0f15c76a36b7a57cc082c933af88e74514583263b36155b82936a854cde670c7",
-          "sha1": "c494aee7bc7756b858979fc3f513bcd2d809b09a",
-          "md5": "bc454aae4d2dee42107fbb16c0f68453"
+          "size": 693292,
+          "sha512": "ffd5c5e3b2e85c5b3752545e43af524cf45826c1030ff2aacc9f0b04ac8b097b85889afc0eb44ccc74bdfbce485494b289ca0564f219dab64119b799f6fada1c",
+          "sha256": "e5abc6e33f693d31f282ff0f77ec247011eb8afaac999f5bb607c299d26283b8",
+          "sha1": "c0c4b55670308d680a2df05556a9345d932bc25d",
+          "md5": "02abc004fd1150b53eff8bb8e0d467af"
         }
       ]
     }
