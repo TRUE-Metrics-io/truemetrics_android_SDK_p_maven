@@ -1,5 +1,85 @@
 # Changelog
 
+## 1.4.0
+
+### New Features
+
+- **Statistics API**: New methods for monitoring SDK health
+  - `getUploadStatistics()`: Returns successful uploads count and last upload timestamp
+  - `getSensorStatistics()`: Returns per-sensor statistics including configured vs actual frequency and data quality assessment
+  - `getDeviceId()`: Convenience method to get the device identifier
+
+  ```kotlin
+  val sdk = TruemetricsSdk.getInstance()
+
+  // Get upload statistics
+  val uploadStats = sdk.getUploadStatistics()
+  println("Successful uploads: ${uploadStats?.successfulUploadsCount}")
+  println("Last upload: ${uploadStats?.lastSuccessfulUploadTimestamp}")
+
+  // Get sensor statistics
+  val sensorStats = sdk.getSensorStatistics()
+  sensorStats?.forEach { stat ->
+      println("${stat.sensorName}: ${stat.actualFrequencyHz}Hz (configured: ${stat.configuredFrequencyHz}Hz) - ${stat.quality}")
+  }
+
+  // Get device ID
+  val deviceId = sdk.getDeviceId()
+  ```
+
+- **Metadata Templates API**: New API for working with reusable metadata templates
+  - Create, get, list, and remove templates
+  - Tag-based metadata management: append, create from template, get by tag, log by tag
+  - Simplifies repetitive metadata logging patterns
+
+  ```kotlin
+  val sdk = TruemetricsSdk.getInstance()
+
+  // Create a reusable template
+  sdk.createMetadataTemplate("delivery", mapOf(
+      "type" to "delivery",
+      "appVersion" to "1.0.0"
+  ))
+
+  // Create tagged metadata from template and append data
+  sdk.createMetadataFromTemplate("current_delivery", "delivery")
+  sdk.appendToMetadataTag("current_delivery", "orderId", "ORDER123")
+  sdk.appendToMetadataTag("current_delivery", "address", "123 Main St")
+
+  // Log all accumulated metadata at once
+  sdk.logMetadataByTag("current_delivery")
+  ```
+
+- **Device ID in Status**: `Initialized`, `RecordingInProgress`, and `DelayedStart` states now include `deviceId` property for easier access
+
+- **New Status `ReadingsDatabaseFull`**: Indicates when the readings database is full due to insufficient phone storage
+
+- **Config Hot Reload**: Configuration can now be updated on the fly without restarting the SDK
+
+- **Payload Chunking**: Large uploads are automatically split into smaller chunks based on configured payload size limit
+
+### Removed
+
+- **SensorWatchdogService**: Removed from SDK 
+- **LowMemoryListener**: Removed from SDK
+- **DatabaseFileSizeObserver**: Removed from SDK
+- **Deprecated APIs removed**:
+  - `observerSensorStats()`, `observerRecordingCount()` - replaced by `getSensorStatistics()`
+  - `getDatabaseSize()`, `observeDatabaseSize()`, `getStorageInfo()` - no longer needed
+  - `deviceIdFlow` - replaced by `getDeviceId()` method and `deviceId` property in Status
+
+### Bug Fixes
+
+- Fix buffer race conditions and data loss on errors
+- Fix tight polling loop causing excessive CPU usage
+
+### Improvements
+
+- Simplified buffer architecture: single buffer instead of complex multi-buffer system
+- Build migrated to Kotlin DSL (build.gradle.kts)
+- Improved test coverage with comprehensive unit and integration tests
+- Better error handling throughout the SDK
+
 ## 1.3.11
 
 - Fix recording all metadata entries from batch (previously only first was recorded)
