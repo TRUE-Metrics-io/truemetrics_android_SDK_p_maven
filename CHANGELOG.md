@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.11
+
+- Fix recording all metadata entries from batch (previously only first was recorded)
+- Fix duplicate sensor readings when metadata ranges overlap
+
 ## 1.3.10
 
 - Fix device ID changing after first app restart
