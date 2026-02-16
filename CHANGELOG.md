@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.1
+
+### Bug Fixes
+
+- **Fix Sentry version conflict**: Isolated SDK's Sentry dependency using package relocation (`io.sentry.*` → `io.truemetrics.internal.sentry.*`). This prevents `ClassNotFoundException: io.sentry.Hub` crashes when host app uses Sentry 9.x or other incompatible versions.
+
 ## 1.4.0
 
 ### New Features
