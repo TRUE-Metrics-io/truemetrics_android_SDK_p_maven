@@ -1,0 +1,216 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.truemetrics",
+    "module": "truemetricssdk",
+    "version": "1.4.2-SNAPSHOT.931c1ce0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14.3"
+    }
+  },
+  "variants": [
+    {
+      "name": "productionReleaseVariantProductionReleaseApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "truemetricssdk-1.4.2-SNAPSHOT.931c1ce0.aar",
+          "url": "truemetricssdk-1.4.2-SNAPSHOT.931c1ce0.aar",
+          "size": 1595872,
+          "sha512": "c7faf61f874aa1e96519d84975d1665bd208567bc2199bd02a6b8e34ecbf8cd90f10a025f314068f00334ddcf1f3c2ab38393eed1c6e92bc7a6a1db38e4679c3",
+          "sha256": "a08e314272fddcfbde9481e15f4bf5a69f647663ff1ca2479f2945d996a4fa53",
+          "sha1": "25a901c44bfe6ea9bfcf450daebdaf00a91faa69",
+          "md5": "12a19ed6d96a934ff4c85d3f888c8220"
+        }
+      ]
+    },
+    {
+      "name": "productionReleaseVariantProductionReleaseRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.6.1"
+          }
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-process",
+          "version": {
+            "requires": "2.2.0"
+          }
+        },
+        {
+          "group": "androidx.work",
+          "module": "work-runtime-ktx",
+          "version": {
+            "requires": "2.9.0"
+          }
+        },
+        {
+          "group": "androidx.startup",
+          "module": "startup-runtime",
+          "version": {
+            "requires": "1.2.0"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.7.2"
+          }
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-ktx",
+          "version": {
+            "requires": "2.7.2"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-ktx",
+          "version": {
+            "requires": "2.5.2"
+          }
+        },
+        {
+          "group": "androidx.sqlite",
+          "module": "sqlite-framework",
+          "version": {
+            "requires": "2.5.2"
+          }
+        },
+        {
+          "group": "net.zetetic",
+          "module": "sqlcipher-android",
+          "version": {
+            "requires": "4.9.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-android",
+          "version": {
+            "requires": "3.3.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-content-negotiation",
+          "version": {
+            "requires": "3.3.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-serialization-kotlinx-json",
+          "version": {
+            "requires": "3.3.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-logging-jvm",
+          "version": {
+            "requires": "3.3.0"
+          }
+        },
+        {
+          "group": "io.ktor",
+          "module": "ktor-client-encoding",
+          "version": {
+            "requires": "3.3.0"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.9.0"
+          }
+        },
+        {
+          "group": "io.insert-koin",
+          "module": "koin-core",
+          "version": {
+            "requires": "4.1.1"
+          }
+        },
+        {
+          "group": "com.google.android.gms",
+          "module": "play-services-location",
+          "version": {
+            "requires": "21.3.0"
+          }
+        },
+        {
+          "group": "androidx.datastore",
+          "module": "datastore-preferences",
+          "version": {
+            "requires": "1.1.7"
+          }
+        },
+        {
+          "group": "androidx.datastore",
+          "module": "datastore-core",
+          "version": {
+            "requires": "1.1.7"
+          }
+        },
+        {
+          "group": "com.jakewharton.timber",
+          "module": "timber",
+          "version": {
+            "requires": "5.0.1"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.20"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "truemetricssdk-1.4.2-SNAPSHOT.931c1ce0.aar",
+          "url": "truemetricssdk-1.4.2-SNAPSHOT.931c1ce0.aar",
+          "size": 1595872,
+          "sha512": "c7faf61f874aa1e96519d84975d1665bd208567bc2199bd02a6b8e34ecbf8cd90f10a025f314068f00334ddcf1f3c2ab38393eed1c6e92bc7a6a1db38e4679c3",
+          "sha256": "a08e314272fddcfbde9481e15f4bf5a69f647663ff1ca2479f2945d996a4fa53",
+          "sha1": "25a901c44bfe6ea9bfcf450daebdaf00a91faa69",
+          "md5": "12a19ed6d96a934ff4c85d3f888c8220"
+        }
+      ]
+    }
+  ]
+}
