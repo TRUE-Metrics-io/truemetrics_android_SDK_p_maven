@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.2
+
+### Bug Fixes
+
+- **Fix obfuscation issues with Statistics API**: Added ProGuard keep rules for `UploadStatistics`, `SensorStatistics`, `SensorDataQuality`, and `TrafficStatus` classes. 
+
 ## 1.4.1
 
 ### Bug Fixes
