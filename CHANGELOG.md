@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.4.3
+
+### Improvements
+
+- **Sentry crash deobfuscation**: SDK crash reports in Sentry are now automatically deobfuscated. ProGuard mapping files are uploaded to Sentry during CI build, enabling readable stack traces for SDK-related crashes.
+
 ## 1.4.2
 
 ### Bug Fixes
