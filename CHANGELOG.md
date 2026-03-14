@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.6
+
+### Bug Fixes
+
+- **Fix CoroutineWorker not executing in Xamarin.Android binding**: `SensorInsertWorker` and `UploadWorker` now extend `Worker` instead of `CoroutineWorker`. The coroutine dispatch mechanism fails in the Xamarin Mono VM runtime, causing `doWork()` to never execute and workers to be immediately cancelled in a loop. Using `Worker` with `runBlocking` bypasses the issue while keeping all suspend logic intact.
+- **Disable sensor watchdog provider by default**: `SENSOR_WATCHDOG_ENABLED` is now `false` in all build configurations. The watchdog module is not bundled in the SDK AAR, so `contentResolver.insert()` calls to `sensorwatchdog.provider` were producing ~25 errors/sec in logcat.
+
 ## 1.4.5
 
 ### Bug Fixes
