@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.4.4
+
+### Bug Fixes
+
+- **Fix swapped callbacks in startRecording**: `onEngineInitialized()` had `action` and `onError` lambdas passed in wrong order, causing recording to never start when engine was still initializing
+- **Fix payloadLimitKb crash**: `require(payloadLimitKb in 1..1024)` threw an exception when backend sent `null` or out-of-range values. Now defaults to 700 KB gracefully
+- **Fix recording starting without config**: `startRecording()` set status to `RecordingInProgress` before checking if configuration was loaded. Now checks config first and emits `Error` status if missing
+- **Fix status flow lost on service reconnect**: `dispatchSdkEvents()` was only called when `pendingConfig != null`. On service reconnect (e.g., after backgrounding), status flow subscriptions were never re-established
+- **Fix getDeviceId() returning null after stopRecording**: Now reads device ID directly from the engine instead of extracting it from the current status object
+- **Fix stale status on deinit after error**: `deinitialize()` now preserves `Error` status instead of resetting to `Uninitialized`, preventing the error from being silently swallowed
+- **Fix startRecording() ignored before service bind**: Calling `startRecording()` immediately after `init()` was silently dropped. Now queues the request and starts recording once the service is connected and config is loaded
+
+### Improvements
+
+- **API compatibility check robustness**: `apiCheck` now compares unobfuscated (debug) builds to avoid false positives from R8 obfuscation reshuffling internal field names
+- **Integration tests**: Added 9 integration tests covering all startup/recording bug fixes, cached config fallback, and deinit cache clearing
+
 ## 1.4.3
 
 ### Improvements
