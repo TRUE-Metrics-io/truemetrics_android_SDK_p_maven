@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.5
+
+### Bug Fixes
+
+- **Fix ForegroundServiceDidNotStartInTimeException crash**: `startForeground()` was only called after async service bind completed (`onServiceConnected` → `initializeEngine` → `displayForegroundNotification`). If bind took longer than Android's ~5 second deadline (e.g. via Xamarin JNI overhead), the OS killed the process. Now calls `startForeground()` immediately in `onCreate()` with a default notification, then updates it with the user-provided notification once initialization completes.
+- **Fix NullPointerException race condition on deinitialize()**: `mainScope` was never cancelled during `deinitialize()`, so async coroutines could access Koin after it was closed, causing NPE in `IsolatedKoinComponent.getKoin()`
+- **Fix startRecording() silently failing after lifecycle unbind**: If the service was temporarily unbound (e.g. during permission dialogs), `startRecording()` was silently dropped. Now always queues the request and processes it when the service reconnects.
+
 ## 1.4.4
 
 ### Bug Fixes
