@@ -1,54 +1,81 @@
 # Changelog
 
+## 1.5.0
+
+### New Features
+
+- **Sensor Statistics**: Real-time statistical aggregation for IMU sensors (accelerometer, gyroscope, magnetometer). Three modes controlled by backend config:
+  - `ON` — both raw IMU readings and aggregated stats are stored and uploaded
+  - `STATS_ONLY` — only aggregated stats are stored, reducing storage and upload volume
+  - `OFF` — no stats processing, raw readings only (default)
+
+  Stats configuration supports hot-reload — changes apply without restarting recording.
+
+- **Device ID Rotation**: Automatic device ID rotation based on server-configured TTL. When the device ID expires, a new one is generated transparently on next initialization.
+
+- **Status.Initializing**: New SDK status emitted during config fetch on startup. On recoverable errors (network failures, server 5xx), the SDK retries automatically instead of failing immediately.
+
+### Bug Fixes
+
+- Fixed duplicate sensor readings that could occur after system pauses or sensor restarts
+- Fixed race condition when calling `deinitialize()` that could cause incomplete cleanup
+- Fixed spurious service reconnects caused by lifecycle transitions
+- Fixed stale sensor readings leaking across recording sessions
+- Fixed in-progress uploads not being cancelled when stopping the SDK
+- Fixed sensor frequency hot-reload not applying for some sensor types
+- Fixed expired metadata entries not being cleaned up
+- Fixed crash when stopping SDK during early initialization
+- Fixed partial server config overwriting all local settings with defaults
+- Fixed potential crash when Location sensor receives null readings
+
+### Improvements
+
+- Improved sensor lifecycle stability across recording sessions
+
 ## 1.4.6
 
 ### Bug Fixes
 
-- **Fix CoroutineWorker not executing in Xamarin.Android binding**: `SensorInsertWorker` and `UploadWorker` now extend `Worker` instead of `CoroutineWorker`. The coroutine dispatch mechanism fails in the Xamarin Mono VM runtime, causing `doWork()` to never execute and workers to be immediately cancelled in a loop. Using `Worker` with `runBlocking` bypasses the issue while keeping all suspend logic intact.
-- **Disable sensor watchdog provider by default**: `SENSOR_WATCHDOG_ENABLED` is now `false` in all build configurations. The watchdog module is not bundled in the SDK AAR, so `contentResolver.insert()` calls to `sensorwatchdog.provider` were producing ~25 errors/sec in logcat.
+- Fixed workers not executing correctly in Xamarin.Android binding
+- Disabled sensor watchdog provider by default (not bundled in SDK)
 
 ## 1.4.5
 
 ### Bug Fixes
 
-- **Fix ForegroundServiceDidNotStartInTimeException crash**: `startForeground()` was only called after async service bind completed (`onServiceConnected` → `initializeEngine` → `displayForegroundNotification`). If bind took longer than Android's ~5 second deadline (e.g. via Xamarin JNI overhead), the OS killed the process. Now calls `startForeground()` immediately in `onCreate()` with a default notification, then updates it with the user-provided notification once initialization completes.
-- **Fix NullPointerException race condition on deinitialize()**: `mainScope` was never cancelled during `deinitialize()`, so async coroutines could access Koin after it was closed, causing NPE in `IsolatedKoinComponent.getKoin()`
-- **Fix startRecording() silently failing after lifecycle unbind**: If the service was temporarily unbound (e.g. during permission dialogs), `startRecording()` was silently dropped. Now always queues the request and processes it when the service reconnects.
+- Fixed crash on startup when service binding takes longer than expected (e.g. via Xamarin)
+- Fixed potential crash during `deinitialize()` when called while async operations are in progress
+- Fixed `startRecording()` being silently dropped after temporary service unbind (e.g. during permission dialogs)
 
 ## 1.4.4
 
 ### Bug Fixes
 
-- **Fix swapped callbacks in startRecording**: `onEngineInitialized()` had `action` and `onError` lambdas passed in wrong order, causing recording to never start when engine was still initializing
-- **Fix payloadLimitKb crash**: `require(payloadLimitKb in 1..1024)` threw an exception when backend sent `null` or out-of-range values. Now defaults to 700 KB gracefully
-- **Fix recording starting without config**: `startRecording()` set status to `RecordingInProgress` before checking if configuration was loaded. Now checks config first and emits `Error` status if missing
-- **Fix status flow lost on service reconnect**: `dispatchSdkEvents()` was only called when `pendingConfig != null`. On service reconnect (e.g., after backgrounding), status flow subscriptions were never re-established
-- **Fix getDeviceId() returning null after stopRecording**: Now reads device ID directly from the engine instead of extracting it from the current status object
-- **Fix stale status on deinit after error**: `deinitialize()` now preserves `Error` status instead of resetting to `Uninitialized`, preventing the error from being silently swallowed
-- **Fix startRecording() ignored before service bind**: Calling `startRecording()` immediately after `init()` was silently dropped. Now queues the request and starts recording once the service is connected and config is loaded
-
-### Improvements
-
-- **API compatibility check robustness**: `apiCheck` now compares unobfuscated (debug) builds to avoid false positives from R8 obfuscation reshuffling internal field names
-- **Integration tests**: Added 9 integration tests covering all startup/recording bug fixes, cached config fallback, and deinit cache clearing
+- Fixed `startRecording()` not working due to internal callback ordering issue
+- Fixed crash when backend sends invalid payload size limit
+- Fixed recording starting before configuration was loaded
+- Fixed SDK status updates being lost after service reconnect
+- Fixed `getDeviceId()` returning null after `stopRecording()`
+- Fixed error status being silently cleared on `deinitialize()`
+- Fixed `startRecording()` being ignored when called immediately after `init()`
 
 ## 1.4.3
 
 ### Improvements
 
-- **Sentry crash deobfuscation**: SDK crash reports in Sentry are now automatically deobfuscated. ProGuard mapping files are uploaded to Sentry during CI build, enabling readable stack traces for SDK-related crashes.
+- SDK crash reports in Sentry are now automatically deobfuscated for better diagnostics
 
 ## 1.4.2
 
 ### Bug Fixes
 
-- **Fix obfuscation issues with Statistics API**: Added ProGuard keep rules for `UploadStatistics`, `SensorStatistics`, `SensorDataQuality`, and `TrafficStatus` classes. 
+- Fixed obfuscation issues with Statistics API classes
 
 ## 1.4.1
 
 ### Bug Fixes
 
-- **Fix Sentry version conflict**: Isolated SDK's Sentry dependency using package relocation (`io.sentry.*` → `io.truemetrics.internal.sentry.*`). This prevents `ClassNotFoundException: io.sentry.Hub` crashes when host app uses Sentry 9.x or other incompatible versions.
+- Fixed Sentry version conflict with host apps using Sentry 9.x or other incompatible versions
 
 ## 1.4.0
 
@@ -62,73 +89,62 @@
   ```kotlin
   val sdk = TruemetricsSdk.getInstance()
 
-  // Get upload statistics
   val uploadStats = sdk.getUploadStatistics()
   println("Successful uploads: ${uploadStats?.successfulUploadsCount}")
   println("Last upload: ${uploadStats?.lastSuccessfulUploadTimestamp}")
 
-  // Get sensor statistics
   val sensorStats = sdk.getSensorStatistics()
   sensorStats?.forEach { stat ->
       println("${stat.sensorName}: ${stat.actualFrequencyHz}Hz (configured: ${stat.configuredFrequencyHz}Hz) - ${stat.quality}")
   }
 
-  // Get device ID
   val deviceId = sdk.getDeviceId()
   ```
 
 - **Metadata Templates API**: New API for working with reusable metadata templates
   - Create, get, list, and remove templates
   - Tag-based metadata management: append, create from template, get by tag, log by tag
-  - Simplifies repetitive metadata logging patterns
 
   ```kotlin
   val sdk = TruemetricsSdk.getInstance()
 
-  // Create a reusable template
   sdk.createMetadataTemplate("delivery", mapOf(
       "type" to "delivery",
       "appVersion" to "1.0.0"
   ))
 
-  // Create tagged metadata from template and append data
   sdk.createMetadataFromTemplate("current_delivery", "delivery")
   sdk.appendToMetadataTag("current_delivery", "orderId", "ORDER123")
   sdk.appendToMetadataTag("current_delivery", "address", "123 Main St")
 
-  // Log all accumulated metadata at once
   sdk.logMetadataByTag("current_delivery")
   ```
 
-- **Device ID in Status**: `Initialized`, `RecordingInProgress`, and `DelayedStart` states now include `deviceId` property for easier access
+- **Device ID in Status**: `Initialized`, `RecordingInProgress`, and `DelayedStart` states now include `deviceId` property
 
 - **New Status `ReadingsDatabaseFull`**: Indicates when the readings database is full due to insufficient phone storage
 
 - **Config Hot Reload**: Configuration can now be updated on the fly without restarting the SDK
 
-- **Payload Chunking**: Large uploads are automatically split into smaller chunks based on configured payload size limit
+- **Payload Chunking**: Large uploads are automatically split into smaller chunks for reliability
 
 ### Removed
 
-- **SensorWatchdogService**: Removed from SDK 
-- **LowMemoryListener**: Removed from SDK
-- **DatabaseFileSizeObserver**: Removed from SDK
-- **Deprecated APIs removed**:
-  - `observerSensorStats()`, `observerRecordingCount()` - replaced by `getSensorStatistics()`
-  - `getDatabaseSize()`, `observeDatabaseSize()`, `getStorageInfo()` - no longer needed
-  - `deviceIdFlow` - replaced by `getDeviceId()` method and `deviceId` property in Status
+- `SensorWatchdogService`, `LowMemoryListener`, `DatabaseFileSizeObserver`
+- Deprecated APIs:
+  - `observerSensorStats()`, `observerRecordingCount()` — replaced by `getSensorStatistics()`
+  - `getDatabaseSize()`, `observeDatabaseSize()`, `getStorageInfo()` — no longer needed
+  - `deviceIdFlow` — replaced by `getDeviceId()` and `deviceId` property in Status
 
 ### Bug Fixes
 
-- Fix buffer race conditions and data loss on errors
-- Fix tight polling loop causing excessive CPU usage
+- Fixed buffer race conditions and data loss on errors
+- Fixed tight polling loop causing excessive CPU usage
 
 ### Improvements
 
-- Simplified buffer architecture: single buffer instead of complex multi-buffer system
-- Build migrated to Kotlin DSL (build.gradle.kts)
-- Improved test coverage with comprehensive unit and integration tests
-- Better error handling throughout the SDK
+- Improved buffer performance and reliability
+- Improved test coverage
 
 ## 1.3.11
 
