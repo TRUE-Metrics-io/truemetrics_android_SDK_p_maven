@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.5.0
+
+### New Features
+
+- **Sensor Statistics**: New real-time statistical aggregation pipeline for IMU sensors (accelerometer, gyroscope, magnetometer). Computes mean, std, percentiles (p20/p50/p80), and covariance matrix eigenvalues over configurable time windows aligned to UTC clock boundaries. Three modes controlled by backend config:
+  - `ON` — both raw IMU readings and aggregated stats are stored and uploaded
+  - `STATS_ONLY` — only aggregated stats are stored; raw IMU readings are filtered out, reducing DB and upload volume
+  - `OFF` — no stats processing, raw readings only (default)
+
+  Stats configuration (`mode_stats`, `duration_stats`) supports hot-reload — changes apply without restarting recording.
+
+- **Device ID Rotation**: Automatic `id_phone` rotation based on server-configured TTL (`duration_id_phone_rotation`, default 14 days). When the device ID expires, a new one is generated transparently on next initialization.
+
+- **Status.Initializing**: New SDK status emitted during config fetch on startup. On recoverable errors (network failures, server 5xx), the SDK retries automatically with exponential backoff instead of failing immediately.
+
+### Bug Fixes
+
+- **Fix duplicate sensor readings from polling catch-up ticks**: When `fixedRateTimer` fired multiple catch-up ticks in quick succession (e.g. after GC pause), Battery and Location sensors saved the same reading on every tick. Battery now uses reference-based dedup (`===`) and Location uses timestamp-based dedup to skip already-polled readings.
+- **Fix race condition on deinitialize**: `service.deinitialize()` was called after `unbindService()`, which could cause the service to be destroyed before cleanup completed. Now calls `deinitialize()` before unbinding.
+- **Fix spurious reconnects from lifecycle bind/unbind cycle**: Removed `onResume`/`onPause` service unbind/rebind in `TruemetricsLifecycleObserver`. The foreground service stays alive via `startForegroundService()` — the previous unbind/rebind cycle caused race conditions requiring `pendingStartRecording`, reconnect logic, and `pendingConfig` guards.
+- **Fix stale dedup state after sensor restart**: Battery and Location now reset their dedup state (`latestReading`, `lastPolledReading`/`lastPolledLocationTime`) in `stop()`, preventing stale readings from leaking across recording sessions on singleton sensor instances.
+- **Fix UploadWorker not cancelling in-progress uploads on WorkManager stop**: Added `onStopped()` override that cancels the active `runBlocking` coroutine job, preventing stalled or partial uploads when WorkManager cancels the worker. `uploadJob` is marked `@Volatile` for cross-thread visibility.
+- **Fix `distinctUntilChanged` predicate inversion for frequency config**: The comparison used `!=` instead of `==`, causing every config emission to trigger sensor re-preparation even when frequencies hadn't changed.
+- **Fix incomplete `allFrequencies` map**: Added all missing sensor frequencies (wifi, battery, step counter, motion, mobile data signal, fused orientation) to the frequency change observation map, and removed duplicate IMU entries that were present in main. Hot-reload of frequency changes from backend now works for all sensors.
+- **Fix expired metadata not being cleaned up**: Restored `deleteExpiredMetadata()` call after metadata insert, lost during 1.4.x refactor. Without this, metadata entries accumulated indefinitely.
+- **Fix HardwareSensor dedup using unreliable reference comparison**: Replaced `SensorEvent.values`/`timestamp` reference comparison with timestamp-based dedup. Clears dedup state on `stop()` to prevent stale replays.
+- **Fix DynamicQueryBatchSizer crash on early teardown**: Added guard for uninitialized `memoryCheckHandler` when `stop()` is called before `start()`.
+- **Fix partial config replacing entire configuration**: When the server sent an incomplete config (e.g. missing sensors), all absent fields were overwritten with hardcoded defaults — disabling sensors and resetting settings. Now merges with existing config: fields present in the response overwrite, fields absent retain their current values. All `ConfigResponse` fields are nullable with null defaults to distinguish "not sent" from "sent with value".
+- **Fix Location crash on null lastLocation**: `LocationResult.lastLocation` can be null in rare cases. The polling provider now filters out null locations before passing to the transformer, preventing `NullPointerException`. Also added `@Volatile` to `latestReading` in Location, RawLocation, and Battery for cross-thread visibility. All sensors now consistently reset cached readings in `stop()` to prevent stale data on singleton reuse.
+
+### Improvements
+
+- **Singleton sensor instances**: All sensor registrations changed from `factory` to `single`, stabilizing lifecycle management and preventing redundant sensor re-creation across recording sessions.
+
 ## 1.4.6
 
 ### Bug Fixes
