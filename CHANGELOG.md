@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.5.1
+
+### New Features
+
+- Added `logMetadata(StandardMetadata)` for logging standardized delivery/pickup event metadata with structured fields
+
+### Deprecations
+
+- `logMetadata(Map)` is deprecated in favor of `logMetadata(StandardMetadata)`
+
+### Bug Fixes
+
+- Fixed device ID rotation attaching a new device ID to sensor data collected before the rotation
+- Increased default device ID rotation period from 14 to 30 days
+
 ## 1.5.0
 
 ### New Features
