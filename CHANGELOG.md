@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.3
+
+### Bug Fixes
+
+- Improved crash report accuracy — stack traces now include correct line numbers and method attribution
+
 ## 1.5.2
 
 ### Bug Fixes
