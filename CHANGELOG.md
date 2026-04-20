@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.2
+
+### Bug Fixes
+
+- Fixed spurious error logs when optional stats module is not bundled
+- Fixed crash when metadata contains null values (e.g. from Java/Xamarin callers)
+- Removed debug recording notification that could appear on some builds
+
 ## 1.5.1
 
 ### New Features
