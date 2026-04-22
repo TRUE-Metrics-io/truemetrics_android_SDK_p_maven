@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.5.4
+
+### Bug Fixes
+
+- Fixed metadata values being corrupted: characters like `:`, `/`, `\`, `*`, `?`, and `;` are now preserved as sent, so ISO 8601 timestamps, addresses, URLs, paths, and values with semicolons roundtrip correctly
+- Fixed crash when `StandardMetadata.extra` is `null` (e.g. from Java callers); the field is now optional
+- Fixed a rare crash when the background upload worker was restarted by the system before the host app re-initialized the SDK; pending uploads now resume on the next SDK initialization
+
 ## 1.5.3
 
 ### Bug Fixes
