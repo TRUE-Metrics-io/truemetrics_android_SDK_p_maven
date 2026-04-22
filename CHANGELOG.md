@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.4
+
+### Bug Fixes
+
+- Fixed metadata values being corrupted: characters like `:`, `/`, `\`, `*`, `?`, and `;` are now preserved as sent, so ISO 8601 timestamps, addresses, URLs, paths, and values with semicolons roundtrip correctly
+- Fixed crash when `StandardMetadata.extra` is `null` (e.g. from Java callers); the field is now optional
+
 ## 1.5.3
 
 ### Bug Fixes
