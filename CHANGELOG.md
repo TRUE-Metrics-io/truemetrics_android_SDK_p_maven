@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.6
+
+### Bug Fixes
+
+- Fixed excessive mobile data usage and battery drain that could occur when the SDK was unable to reach the server (for example on a restricted or offline network); uploads now back off between retries instead of resending continuously, and recorded data is preserved for delivery once the connection is restored
+
 ## 1.5.5
 
 ### Bug Fixes
