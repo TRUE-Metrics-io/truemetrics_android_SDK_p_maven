@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.5.7
+
+### Bug Fixes
+
+- Fixed sensor recording that could silently stop on some devices while metadata kept being sent; if a sensor can't be initialized (fused orientation), it's now skipped instead of bringing the whole recording down — the SDK keeps recording with the remaining sensors
+- Fixed a crash on startup when the SDK was initialized without location permission (for example before the permission was granted, or after it was revoked); the background service now starts reliably, and automatically uses location once the permission is granted
+- Fixed rare crashes that could occur when the SDK was stopped and re-initialized in quick succession, or when it was stopped while a configuration update or upload was still in flight
+- Fixed sensor data being uploaded repeatedly without being cleared from local storage when `payload_limit_kb` was set high enough to produce packets with tens of thousands of readings; uploads now reliably free local storage on success
+- Fixed background data uploads stopping permanently on some devices after the system interrupted an upload (most common with aggressive battery/background management on certain manufacturers); uploads now resume automatically instead of staying stopped until the app was restarted. In metadata-triggered mode this previously risked losing buffered data
+
+### Improvements
+
+- `payload_limit_kb` now supports values up to 9,000 KB (previously capped silently at 1,024 KB); larger packets mean fewer, larger uploads (fewer network round-trips per recording)
+- `period_upload` now acts as the maximum age before a partial flush rather than a fixed interval between uploads. Each upload fires as soon as the local buffer reaches 80% of `payload_limit_kb` OR when the oldest pending reading exceeds `period_upload`, whichever comes first. Low values behave the same as before; higher values now produce proportionally larger packets instead of more frequent small ones.
+
+### Notes
+
+- The SDK's foreground services no longer use the "special use" foreground-service type. If your Google Play foreground-service declaration listed "special use" for any Truemetrics service (the main recording service or the optional sensor-watchdog service), update the declaration to "data sync" — the SDK now declares the data-sync type
+- On Android 15, if location permission is never granted, the system may pause background recording after extended background runtime; granting location avoids this limit
+
 ## 1.5.6
 
 ### Bug Fixes
