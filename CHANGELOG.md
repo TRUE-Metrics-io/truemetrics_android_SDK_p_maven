@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.5.8
+
+### Bug Fixes
+
+- Fixed data uploads that could silently stop for the rest of a session when the SDK was re-initialized right after a previous shutdown (for example after an authentication error with a corrected API key)
+- On Android 15, if the system ends extended background recording (possible when location permission was never granted), the SDK now reports the recording as stopped through the status listener instead of appearing active after it had silently ended
+- Fixed the background recording service sometimes failing to start on Android 14+ when location permission was not granted
+- The SDK no longer fails to initialize on devices without WiFi hardware — the WiFi sensor is skipped and everything else records
+- In metadata-triggered mode, fixed readings being duplicated across upload packets, and a small window's remaining data not being uploaded
+
+### Improvements
+
+- In metadata-triggered mode, unsent data is now kept for up to 3 days instead of being dropped once it falls outside the metadata window — so a metadata event arriving late (for example after the device was offline) can still trigger the upload of the data it covers
+- If device storage fills up, the SDK now drops the oldest unsent readings to keep recording — preserving the newest data and recent history — instead of losing new data, and recovers automatically once space frees up
+
 ## 1.5.7
 
 ### Bug Fixes
