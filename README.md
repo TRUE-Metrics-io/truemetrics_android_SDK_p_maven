@@ -7,8 +7,8 @@
 
 ## Version Information
 
-- **Production Version**: `1.5.1`
-- **Snapshot Version**: `1.4.0-SNAPSHOT`
+- **Production Version**: `1.6.0`
+- **Snapshot Version**: `1.6.0-SNAPSHOT`
 
 
 ## Installation
@@ -26,7 +26,7 @@ repositories {
 
 
 dependencies {
-    implementation("io.truemetrics:truemetricssdk:1.5.1")
+    implementation("io.truemetrics:truemetricssdk:1.6.0")
 }
 ```
 
@@ -36,7 +36,7 @@ Add the following to your app-level `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation 'io.truemetrics:truemetricssdk:1.5.1'
+    implementation 'io.truemetrics:truemetricssdk:1.6.0'
 }
 ```
 
@@ -53,7 +53,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.truemetrics:truemetricssdk:1.4.0-SNAPSHOT")
+    implementation("io.truemetrics:truemetricssdk:1.6.0-SNAPSHOT")
 }
 ```
 
@@ -65,7 +65,7 @@ Add the following to your `pom.xml`:
 <dependency>
     <groupId>io.truemetrics</groupId>
     <artifactId>truemetricssdk</artifactId>
-    <version>1.5.1</version>
+    <version>1.6.0</version>
     <type>aar</type>
 </dependency>
 ```
