@@ -1,5 +1,37 @@
 # Changelog
 
+## 1.6.0
+
+### Behaviour Changes
+
+- Initializing the SDK no longer starts recording by itself — a new recording begins when the host calls `startRecording()`. This restores the behaviour of 1.2.x and earlier; the delayed-start option added in 1.3.0 defaulted to starting on init, so an app that called `init()` without ever calling `startRecording()` has been recording since then. To keep the previous behaviour, pass `delayAutoStartRecording(SdkConfiguration.AUTO_START_ON_INIT)`, or a positive delay to start after it elapses. A recording the host had started is resumed the next time the app initializes the SDK, so restarting the app does not lose it — an app that is killed or updated mid-recording picks up where it left off. That also means a device that happened to be recording when it was updated keeps recording: stopping it once, with `stopRecording()` or `deinitialize()`, is enough, and every launch after that follows the new default. Any flow that already ends a shift or logs the user out does this if it calls one of those two. Calling `init()` again does not — on an initialized SDK it returns immediately, and in a fresh process it is what resumes the recording
+
+### Bug Fixes
+
+- Fixed a crash when any standard metadata field was `null` — from Java, C# or Dart, where the compiler cannot prevent it. Only `extra` had been made optional in 1.5.4; the other nine fields still threw inside the constructor, before the SDK saw the event at all. Every field is now optional, and an omitted or `null` field is uploaded as an empty string, which is what passing `""` has always produced, so the uploaded event is unchanged
+- Fixed the same crash when the metadata call itself was given `null`. A null that says *what* to act on — an event, a payload, a template name, a tag — leaves nothing to act on, so the call is ignored with a log line instead of taking the app down, and logging by a `null` tag reports that nothing was found. A null value inside a payload is missing data rather than a missing target, so it is recorded as an empty string
+- Fixed a crash when the additional key-value pairs on an event contained a `null` value; those are now uploaded as empty strings like any other missing value
+- Fixed `stopRecording()` being ignored when it arrived during a configured start delay: recording had not begun yet, so the call was discarded and recording then started anyway when the delay elapsed
+- Fixed `stopRecording()` being lost when it was called before the SDK finished binding its service, while `startRecording()` in the same moment was kept — turning recording off and on again at app launch could leave it recording. Both calls are now held and the last one wins
+- Fixed a crash when a start delay was given in microseconds or nanoseconds
+- A negative start delay no longer means "start immediately" in one form of the call and an error in the other; any negative value now means the SDK waits for `startRecording()`
+- Fixed a sensor reading with a corrupted timestamp (for example a location fix reporting no time) being able to permanently block local storage and uploads for the rest of the installation; such readings are now detected and dropped at every stage, and devices already stuck on one recover automatically after upgrading
+- Fixed uploads stalling permanently when the backend repeatedly rejects the same packet as invalid (HTTP 400/422): after at least three rejections spanning at least 30 minutes the SDK removes that packet and continues uploading the rest of the data. Short-lived backend-side rejection windows (for example during a bad deploy) never delete anything, and size-related rejections (payload too large) are reported but never remove data
+- In metadata-triggered mode, fixed readings being duplicated in uploads when a storage write was retried after a transient database error
+- Fixed a burst of sensor readings being silently dropped when the storage writer fell behind (present since 1.3.0, most likely while the device was recovering from full storage); the backlog is now merged instead, bounded by shedding the oldest readings first
+- Fixed sensor statistics from a stopping recording session leaking into the next session when recording was restarted quickly
+- Fixed an internal background watcher not being stopped when the SDK shut down after an authentication error
+- `startRecording()` called without an initialized SDK no longer fails silently: it now reports `NOT_INITIALIZED` through the status instead of holding the request that nothing was going to act on. A call made while the SDK is still starting up is still held and applied, as before
+- Fixed the reported SDK status staying on "recording" after `deinitialize()`, or after the background service was lost. An integrator that decides whether to call `startRecording()` from the observed status would never start recording again for the rest of the process; the status now returns to uninitialized when the session ends
+- Fixed the end-of-recording status event being dropped when nothing followed it: it was written after the session's last flush, so it sat in memory waiting for sensor data that was never going to arrive. Recording start/stop and the other status events now go to storage as soon as they happen
+
+### Improvements
+
+- Improved data collection while the device runs on battery with the screen off: a recording session now keeps the processor awake, so sensors keep sampling at the configured rate throughout
+- App foreground/background status events are now included in the recorded data
+- The recorded data now also reports when the SDK held the CPU wake lock and when the device entered or left Doze — the two things that decide how much the sensors actually capture while the screen is off. Neither was visible in the data before, so a thinned-out stretch of a recording could not be told apart from a device that was simply idle
+- Remote configuration is now validated when read: an upload period below 3 seconds is raised to 3 seconds, so a misconfigured value can no longer make devices upload at extreme rates
+
 ## 1.5.8
 
 ### Bug Fixes
