@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.6.1
+
+### Behaviour Changes
+
+- The SDK now records when it comes up and when it is shut down. The opening marker is written once the SDK has a configuration, so an initialization that never reached the server produces none. The closing marker is written by an orderly shutdown; if it is missing, either the shutdown did not run or it never got the chance to send
+- Recording start and stop rows now carry why they happened: a start says whether it came from the host, a resume or a configured delay, and a stop says whether the host, a shutdown, a traffic limit or a full disk ended it
+- Status events (recording start and stop, wake lock, Doze, app foreground and background) now reach accounts in metadata-triggered mode. Only readings inside a metadata window were uploaded there, and windows exist only for customer metadata, so a status event that did not land near one was never sent and was eventually deleted — an app that logged no metadata delivered none at all. Continuous-upload accounts were unaffected and still are
+
+### Bug Fixes
+
+- Fixed a recording resumed after a restart reporting the wrong start origin when a start delay is configured
+- Fixed status events being deleted before they could upload — by the retention horizon and by the storage-full cleanup
+- Fixed a shutdown interrupted mid-write dropping sensor readings it had already taken out of the queue
+- Fixed the shutdown status event being lost when the app is closed: it is now stored during shutdown and sent with the next launch
+- Fixed `stopRecording()` writing an end-of-recording event when there was no recording to end
+- Fixed readings recorded on the way into a traffic limit surviving the wipe the limit requires
+- Fixed customer metadata queued at shutdown losing its upload window
+- Fixed the SDK reporting a permissions request with no missing permissions, which overwrote the `Initialized` status — an app waiting for `Initialized` could wait forever
+
 ## 1.6.0
 
 ### Behaviour Changes
