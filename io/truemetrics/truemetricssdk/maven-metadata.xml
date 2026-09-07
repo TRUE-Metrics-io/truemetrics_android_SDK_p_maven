@@ -3,11 +3,11 @@
   <groupId>io.truemetrics</groupId>
   <artifactId>truemetricssdk</artifactId>
   <versioning>
-    <latest>1.4.0-SNAPSHOT.2e6d3621</latest>
-    <release>1.4.0-SNAPSHOT.2e6d3621</release>
+    <latest>1.6.2-SNAPSHOT.2900d76d</latest>
+    <release>1.6.2-SNAPSHOT.2900d76d</release>
     <versions>
-      <version>1.4.0-SNAPSHOT.2e6d3621</version>
+      <version>1.6.2-SNAPSHOT.2900d76d</version>
     </versions>
-    <lastUpdated>20251027193330</lastUpdated>
+    <lastUpdated>20260907232920</lastUpdated>
   </versioning>
 </metadata>
