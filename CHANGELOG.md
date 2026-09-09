@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.6.2
+
+### Bug Fixes
+
+- Fixed a hardware sensor (accelerometer, gyroscope, magnetometer, barometer or step counter) silently recording nothing for a whole session when the device's sensor service failed to start it; the SDK now retries for up to about three minutes
+
+### Behaviour Changes
+
+- A sensor that could not be started is now reported in the data as a `sensor_start_failed` status event naming the sensor, the reason (`unavailable`, `permission_missing`, `register_refused` or `no_events`) and how many attempts were made; one that needed more than one attempt is reported as `sensor_recovered`
+- A sensor the device does not have, or one whose runtime permission the app lacks, is reported once per SDK initialization rather than on every recording start
+
 ## 1.6.1
 
 ### Behaviour Changes
