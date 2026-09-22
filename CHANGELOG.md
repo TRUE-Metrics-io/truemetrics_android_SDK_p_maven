@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.6.3
+
+### Bug Fixes
+
+- Fixed a crash of the host app. Android refuses to start a foreground service while the app is in the background, and the SDK let that refusal escape from `init()`
+- Fixed the SDK reporting itself as initialized and recording when its foreground service had not actually started. The system could stop such a session at any moment, and nothing in the status said so
+
+### Behaviour Changes
+
+- When Android refuses the foreground service, `init()` now reports `FOREGROUND_SERVICE_START_REFUSED` on `sdkStatus` instead of throwing. Every other start failure still throws
+- That error is temporary. The SDK retries by itself when the app's UI next comes to the foreground, and reports itself ready once the service runs. Do not treat it as fatal: an app that abandons initialization on any error will give up on a session that would have worked
+- `startRecording()` called while that error stands is remembered, not lost. Recording begins as soon as the service is running. `stopRecording()` cancels it, as it would any recording
+
 ## 1.6.2
 
 ### Bug Fixes
