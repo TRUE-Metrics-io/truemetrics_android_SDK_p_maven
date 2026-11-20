@@ -1,0 +1,355 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.truemetrics",
+    "module": "navigation",
+    "version": "0.1.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.8.1"
+    }
+  },
+  "variants": [
+    {
+      "name": "publishedVariantPublishedApiPublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-api"
+      },
+      "dependencies": [
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity",
+          "version": {
+            "requires": "1.13.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.20"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-0.1.0.aar",
+          "url": "navigation-0.1.0.aar",
+          "size": 1395240,
+          "sha512": "bfac9eb7ee0676403ff15f4f3e60ee6717f129183c270a19009a9aaff025bd31c737596283ecfbe11b29169f260368515fbd3386725e38554650b3ab6f5034af",
+          "sha256": "f90de4cbef8831f924c218115704554fe90da73593de7df54ef52eb4baa0bbb2",
+          "sha1": "cd05fc18bf62b37aae9917b6483ad8973589367e",
+          "md5": "28356b91a63c3681a352df9a07fc1388"
+        }
+      ]
+    },
+    {
+      "name": "publishedVariantPublishedRuntimePublication",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.libraryelements": "aar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-parcelize-runtime",
+          "version": {
+            "requires": "2.4.21"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "org.maplibre.navigation",
+          "module": "navigation-ui-android",
+          "version": {
+            "requires": "5.0.1"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "org.maplibre.gl",
+          "module": "android-sdk-opengl",
+          "version": {
+            "requires": "13.6.1"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-serialization-json",
+          "version": {
+            "requires": "1.11.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "com.squareup.okhttp3",
+          "module": "okhttp",
+          "version": {
+            "requires": "4.12.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.room",
+          "module": "room-runtime",
+          "version": {
+            "requires": "2.7.2"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "com.google.android.material",
+          "module": "material",
+          "version": {
+            "requires": "1.14.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity-compose",
+          "version": {
+            "requires": "1.13.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "com.jakewharton.timber",
+          "module": "timber",
+          "version": {
+            "requires": "5.0.1"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "org.maplibre.gl",
+          "module": "android-sdk-turf",
+          "version": {
+            "requires": "6.0.1"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-runtime-ktx",
+          "version": {
+            "requires": "2.11.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlinx",
+          "module": "kotlinx-coroutines-android",
+          "version": {
+            "requires": "1.11.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose",
+          "module": "compose-bom",
+          "version": {
+            "requires": "2026.09.00"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ],
+          "attributes": {
+            "org.gradle.category": "platform"
+          }
+        },
+        {
+          "group": "androidx.compose.ui",
+          "module": "ui",
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.foundation",
+          "module": "foundation",
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.compose.material3",
+          "module": "material3",
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.lifecycle",
+          "module": "lifecycle-runtime-compose",
+          "version": {
+            "requires": "2.11.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.appcompat",
+          "module": "appcompat",
+          "version": {
+            "requires": "1.7.1"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "androidx.activity",
+          "module": "activity",
+          "version": {
+            "requires": "1.13.0"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.2.20"
+          },
+          "excludes": [
+            {
+              "group": "org.maplibre.gl",
+              "module": "android-sdk"
+            }
+          ]
+        }
+      ],
+      "files": [
+        {
+          "name": "navigation-0.1.0.aar",
+          "url": "navigation-0.1.0.aar",
+          "size": 1395240,
+          "sha512": "bfac9eb7ee0676403ff15f4f3e60ee6717f129183c270a19009a9aaff025bd31c737596283ecfbe11b29169f260368515fbd3386725e38554650b3ab6f5034af",
+          "sha256": "f90de4cbef8831f924c218115704554fe90da73593de7df54ef52eb4baa0bbb2",
+          "sha1": "cd05fc18bf62b37aae9917b6483ad8973589367e",
+          "md5": "28356b91a63c3681a352df9a07fc1388"
+        }
+      ]
+    }
+  ]
+}
